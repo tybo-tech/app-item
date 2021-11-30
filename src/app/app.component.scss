@@ -1,0 +1,28 @@
+
+@import '../assets/styles/colors';
+.nav{
+  background: $white;
+}
+.navbar-brand {
+  img {
+    width: 8em;
+  }
+}
+
+.navbar {
+  ul {
+    li {
+      a {
+        &:hover {
+          color: $primary;
+        }
+        margin: 0 1em !important;
+      }
+    }
+  }
+}
+
+.active-link {
+  color: $primary !important;
+  border-bottom: 2px solid $primary;
+}

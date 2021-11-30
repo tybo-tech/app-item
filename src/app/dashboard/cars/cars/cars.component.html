@@ -1,0 +1,75 @@
+<div class="container mt-5" *ngIf="items">
+  <h1 class="title">Our Vihicles</h1>
+
+  <div class="actions">
+    <input type="search" class="search" placeholder="Search here">
+    <button type="button" class="btn btn-primary"  *ngIf="user && user.UserType === ADMIN"  (click)="add()">
+      Add a car
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12  mt-4" *ngFor="let item of items">
+      <div class="card cloud-bg" style="margin: 1em;">
+
+
+        <div class="row ">
+          <div class="col-md-6" style="background: #E4E4E4;">
+            <img [src]="item.ImageUrl" class="img-fluid" alt="...">
+          </div>
+          <div class="col-md-6 " style="padding: 1em 2em; ">
+
+            <div class="card-body">
+
+
+              <h4 class="card-title fw-bold">{{item.Name}}</h4>
+              <h6>
+                From {{item.Price | currency: 'R'}}
+              </h6>
+
+              <div class="feature" *ngFor="let child of item.Children">
+                <div class="col">
+                  <img [src]="child.ImageUrl" *ngIf="child.ImageUrl">
+                </div>
+                <div class="col">
+                  <p>
+                    {{child.Name}}
+                  </p>
+                </div>
+              </div>
+
+              <a  *ngIf="!item.ShowMore" (click)="item.ShowMore = true" class="card-link">Show more.</a>
+              <a  *ngIf="item.ShowMore" (click)="item.ShowMore = false" class="card-link">Show less.</a>
+
+              <div *ngIf="item.ShowMore" class="more-detais line-break" [innerHtml]="item.Description">
+              </div>
+
+              <div class="actions">
+                <button type="button" *ngIf="user && user.UserType === ADMIN" class="btn btn-primary"
+                  (click)="view(item)">
+                  View details
+                </button>
+                <button type="button" *ngIf="!user || user.UserType === CUSTOMER" class="btn btn-primary"
+                  (click)="book(item)">
+                 Book this car
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="card-body">
+
+          <p class="card-text">
+            {{item.Description}}
+          </p>
+          <a href="#" class="btn btn-primary">Book now</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

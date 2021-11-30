@@ -1,0 +1,102 @@
+<div class=" forms">
+  <div class="row justify-content-center">
+    <div class="form-container mt-5" *ngIf="item">
+      <h1 class="title">{{item.Name}}</h1>
+
+      <br>
+      <div class="row">
+        <div class="mb-3">
+          <img [src]="item.ImageUrl" alt="">
+        </div>
+
+
+
+        <div class="mb-3">
+          <div class="more-detais line-break" [innerHtml]="item.Description">
+          </div>
+        </div>
+        <br><br>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="feature" *ngFor="let child of item.Children">
+              <div class="col">
+                <img [src]="child.ImageUrl" *ngIf="child.ImageUrl">
+              </div>
+              <div class="col">
+                <p>
+                  {{child.Name}}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="feature" *ngFor="let child of item.Children">
+              <div class="col">
+                <img [src]="child.ImageUrl" *ngIf="child.ImageUrl">
+              </div>
+              <div class="col">
+                <p>
+                  {{child.Name}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+
+  </div>
+
+</div>
+
+
+
+<div class=" forms">
+<h1>
+  DRIVER DETAILS
+</h1>
+
+<div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label"> First Name*</label>
+  <input type="text" class="form-control" id="exampleInputEmail1">
+</div>
+
+<div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label"> Last Name*</label>
+  <input type="text" class="form-control" id="exampleInputEmail1">
+</div>
+
+<div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label"> Email*</label>
+  <input type="text" class="form-control" id="exampleInputEmail1">
+</div>
+
+<div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label"> ID/Passport Number*</label>
+  <input type="text" class="form-control" id="exampleInputEmail1">
+</div>
+
+<div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label"> Mobile Number*</label>
+  <input type="text" class="form-control" id="exampleInputEmail1">
+</div>
+
+
+  <div class="actions">
+    <button type="button" class="btn btn-light" style="margin-right: 2em;" (click)="back()">Back</button>
+    <button type="submit" class="btn btn-primary" (click)="save()">Submit booking</button>
+
+  </div>
+</div>

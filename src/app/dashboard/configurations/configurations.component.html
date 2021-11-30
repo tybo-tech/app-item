@@ -1,0 +1,89 @@
+<div class="container mt-5" *ngIf="items">
+
+  <button type="button" class="btn btn-primary  mt-2" (click)="add()" data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop">
+    Add a config
+  </button>
+  <div class="row mt-4">
+    <div class="col-sm-4" *ngFor="let item of items">
+      <div class="card m-1">
+
+        <div class="card-header" (click)="view(item)"  data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">
+         <b> {{item.Name}}</b>
+        </div>
+      
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"  data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop" *ngFor="let child of item.Children"  (click)="view(child)">{{child.Name}}</li>
+        </ul>
+
+        <div class="card-body">
+          <a  data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop" (click)="add(item)" class="card-link">Add option</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{heading}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div class="form-container" *ngIf="item">
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Item Name</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="item.Name">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Item Description</label>
+              <textarea type="text" class="form-control" id="exampleInputEmail1"
+                [(ngModel)]="item.Description"></textarea>
+            </div>
+
+
+            <div class="mb-3">
+              <app-image-widget [image]="item.ImageUrl" (imageChangedEvent)="onImageChangedEvent($event)">
+              </app-image-widget>
+            </div>
+
+          </div>
+
+
+          <div *ngIf="message" class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+              <use xlink:href="#check-circle-fill" /></svg>
+            <div>
+              {{message}}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+          </div>
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" #closeAddExpenseModal data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

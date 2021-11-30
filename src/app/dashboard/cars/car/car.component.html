@@ -1,0 +1,76 @@
+<div class=" forms">
+  <div class="row justify-content-center">
+    <div class="form-container mt-5" *ngIf="item">
+
+
+      <div class="row">
+        <div class="mb-3">
+          <app-image-widget [image]="item.ImageUrl" (imageChangedEvent)="onImageChangedEvent($event)">
+          </app-image-widget>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Item Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="item.Name">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Item Description</label>
+          <textarea type="text" class="form-control" style="height: 10em;" id="exampleInputEmail1"
+            [(ngModel)]="item.Description"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Price Per Day</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="item.Price">
+        </div>
+
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+    <div *ngIf="message" class="alert alert-success d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+        <use xlink:href="#check-circle-fill" /></svg>
+      <div>
+        {{message}}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    </div>
+
+
+  </div>
+</div>
+
+<div class=" forms">
+
+  <div class="mb-3" *ngFor="let item of items">
+    <label for="exampleInputEmail1" class="form-label">{{item.Name}}</label>
+    <select name="" class="form-control" id="" [(ngModel)]= "item.SelectedItemId">
+      <option *ngFor="let child of item.Children"  [value]="child.ItemId">
+        {{child.Name}}
+      </option>
+    </select>
+  </div>
+
+
+
+
+
+
+  
+  <div class="actions">
+    <button type="button" class="btn btn-light" style="margin-right: 2em;" (click)="back()">Back</button>
+    <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
+
+  </div>
+</div>
